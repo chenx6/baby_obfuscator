@@ -4,5 +4,5 @@ set(CMAKE_CXX_STANDARD 14)
 
 add_library(obfuscate
   MODULE
-  obfuscate.cpp
+  ObfuscateString.cpp
 )
