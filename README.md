@@ -27,7 +27,16 @@ cmake --build . -- -j$(nproc)
 ## How to use
 
 ```bash
-$ cd test
-$ ./run.sh ${source_file}
-# will build ${source_file} to final.out binary file
+# You should assign ${fullname} and ${basename}
+# Example: fullname=test.c; basename=test
+# Compile origin program
+clang-9 -emit-llvm -S ${fullname} -o ${basename}.ll
+# Load obfuscator to obfuscate program
+opt-9 -p \
+    -load ../build/src/libobfuscate.so \
+    -obfstr ${basename}.ll \
+    -o ${basename}_obfuscated.bc
+# If you are using ObfuscateString Pass, you should link encrypt.c with your program
+# Compile to target platform
+clang-9 ${basename}_obfuscated.bc -o ${basename}
 ```
