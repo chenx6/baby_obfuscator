@@ -40,3 +40,9 @@ opt-9 -p \
 # Compile to target platform
 clang-9 ${basename}_obfuscated.bc -o ${basename}
 ```
+
+## Acknowledgement
+
+The project has "borrow" some code from these projects:
+
+[obfuscator-llvm/obfuscator](https://github.com/obfuscator-llvm/obfuscator)
