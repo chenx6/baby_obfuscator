@@ -10,6 +10,7 @@ Write up (in Chinese): <https://zhuanlan.zhihu.com/p/104735336>
 | - | - |
 | Obfuscate constant string | `-obfstr` |
 | Add bogus control flow | `-boguscf` |
+| Instruction Substitution | `-subobf` |
 
 ## Requirement
 
@@ -50,3 +51,5 @@ clang-9 ${basename}_obfuscated.bc -o ${basename}
 The project has "borrow" some code from these projects:
 
 [obfuscator-llvm/obfuscator](https://github.com/obfuscator-llvm/obfuscator)
+
+[HikariObfuscator/Core/](https://github.com/HikariObfuscator/Core/)

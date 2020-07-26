@@ -6,4 +6,5 @@ add_library(obfuscate
   MODULE
   ObfuscateString.cpp
   BogusFlow.cpp
+  Substitution.cpp
 )
