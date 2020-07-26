@@ -1,4 +1,4 @@
-# Baby obfuscation
+# Baby obfuscator
 
 Using LLVM Pass to obfuscate programs.
 
