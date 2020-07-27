@@ -52,4 +52,8 @@ The project has "borrow" some code from these projects:
 
 [obfuscator-llvm/obfuscator](https://github.com/obfuscator-llvm/obfuscator)
 
-[HikariObfuscator/Core/](https://github.com/HikariObfuscator/Core/)
+## License
+
+MIT License
+
+The "remap operands" part in BogusFlow.cpp is licensed in NCSA.
