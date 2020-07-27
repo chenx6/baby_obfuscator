@@ -55,5 +55,3 @@ The project has "borrow" some code from these projects:
 ## License
 
 MIT License
-
-The "remap operands" part in BogusFlow.cpp is licensed in NCSA.
