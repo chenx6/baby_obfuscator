@@ -12,6 +12,13 @@
 
 using namespace llvm;
 
+static cl::opt<int>
+    ObfProbRate("bcf_prob",
+                cl::desc("Choose the probability [%] each basic blocks will be "
+                         "obfuscated by the -bcf pass"),
+                cl::value_desc("probability rate"), cl::init(70),
+                cl::Optional);
+
 struct BongusFlowPass : public FunctionPass {
   static char ID;
   std::mt19937 rng;
@@ -29,7 +36,6 @@ struct BongusFlowPass : public FunctionPass {
   }
 
   virtual bool runOnFunction(Function &F) {
-    int ObfuscateProbability = 90;
     // Put origin BB into vector.
     std::vector<BasicBlock *> targetBasicBlocks;
     for (BasicBlock &BB : F) {
@@ -43,7 +49,7 @@ struct BongusFlowPass : public FunctionPass {
     }
     // Add bogus control flow to some BB.
     for (BasicBlock *BB : targetBasicBlocks) {
-      if (rng() % 100 >= ObfuscateProbability) {
+      if (rng() % 100 >= ObfProbRate) {
         continue;
       }
       BasicBlock *bogusBB = geneBogusFlow(BB, &F);
