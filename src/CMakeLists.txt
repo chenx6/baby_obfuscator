@@ -7,4 +7,5 @@ add_library(Obfuscator
   ObfuscateString.cpp
   BogusFlow.cpp
   Substitution.cpp
+  Flattening.cpp
 )

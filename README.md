@@ -11,6 +11,7 @@ Write up (in Chinese): <https://zhuanlan.zhihu.com/p/104735336>
 | Obfuscate constant string | `-obfstr` |
 | Add bogus control flow | `-boguscf` |
 | Instruction Substitution | `-subobf` |
+| Call graph flattening | `-flattening` |
 
 ## Requirement
 
@@ -38,7 +39,7 @@ cmake --build . -- -j$(nproc)
 clang-9 -emit-llvm -S ${fullname} -o ${basename}.ll
 # Load obfuscator to obfuscate program
 # You can change -obfstr option to other options
-opt-9 -load ../build/src/libobfuscate.so \
+opt-9 -load /part/to/libObfuscator.so \
       -obfstr ${basename}.ll \
       -o ${basename}_obfuscated.bc
 # If you are using ObfuscateString Pass, you should link encrypt.c with your program
