@@ -141,7 +141,10 @@ struct BongusFlowPass : public FunctionPass {
       loadInst =
           bogusCondBuilder.CreateLoad(allocaInsts[rng() % allocaInsts.size()]);
     } else {
-      loadInst = bogusCondBuilder.getInt32(1);
+      GlobalVariable *globalValue = new GlobalVariable(
+          *F->getParent(), bogusCondBuilder.getInt32Ty(), false,
+          GlobalValue::PrivateLinkage, bogusCondBuilder.getInt32(rng()));
+      loadInst = bogusCondBuilder.CreateLoad(globalValue);
     }
     Value *addInst =
         bogusCondBuilder.CreateAdd(loadInst, bogusCondBuilder.getInt32(1));
