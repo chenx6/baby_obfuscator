@@ -35,7 +35,9 @@ struct FlatteningPass : public FunctionPass {
 
     // If firstBB's terminator is BranchInst, then split into two blocks
     BasicBlock *firstBB = &*F.begin();
-    if (BranchInst *br = dyn_cast<BranchInst>(firstBB->getTerminator())) {
+    Instruction *firstBBTerminator = firstBB->getTerminator();
+    if (isa<BranchInst>(firstBBTerminator) ||
+        isa<IndirectBrInst>(firstBBTerminator)) {
       BasicBlock::iterator iter = firstBB->end();
       if (firstBB->size() > 1) {
         --iter;
