@@ -13,8 +13,7 @@ static cl::opt<int>
     ObfProbRate("bcf_prob",
                 cl::desc("Choose the probability [%] each basic blocks will be "
                          "obfuscated by the -bcf pass"),
-                cl::value_desc("probability rate"), cl::init(70),
-                cl::Optional);
+                cl::value_desc("probability rate"), cl::init(70), cl::Optional);
 
 struct BongusFlowPass : public FunctionPass {
   static char ID;
@@ -22,6 +21,7 @@ struct BongusFlowPass : public FunctionPass {
   SmallVector<unsigned int, 13> integerOp;
   SmallVector<unsigned int, 5> floatOp;
   SmallVector<AllocaInst *, 0> allocaInsts;
+
   BongusFlowPass() : FunctionPass(ID), rng(std::random_device{}()) {
     integerOp = {Instruction::Add,  Instruction::Sub,  Instruction::Mul,
                  Instruction::UDiv, Instruction::SDiv, Instruction::URem,
