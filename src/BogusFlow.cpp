@@ -34,7 +34,7 @@ struct BongusFlowPass : public FunctionPass {
 
   virtual bool runOnFunction(Function &F) {
     // Put origin BB into vector.
-    std::vector<BasicBlock *> targetBasicBlocks;
+    SmallVector<BasicBlock *, 0> targetBasicBlocks;
     for (BasicBlock &BB : F) {
       targetBasicBlocks.emplace_back(&BB);
     }
