@@ -36,14 +36,10 @@ struct BongusFlowPass : public FunctionPass {
     // Put origin BB into vector.
     std::vector<BasicBlock *> targetBasicBlocks;
     for (BasicBlock &BB : F) {
-      // Put "alloca i32 ..." instruction into allocaInsts for further use
-      if (allocaInsts.size() == 0) {
-        if (findAllocInst(BB) != 0) {
-          continue;
-        }
-      }
       targetBasicBlocks.emplace_back(&BB);
     }
+    // Put "alloca i32 ..." instruction into allocaInsts for further use
+    findAllocInst(F.getEntryBlock());
     // Add bogus control flow to some BB.
     for (BasicBlock *BB : targetBasicBlocks) {
       if (rng() % 100 >= ObfProbRate) {
