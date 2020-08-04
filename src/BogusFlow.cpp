@@ -5,10 +5,7 @@
 #include "llvm/Transforms/IPO/PassManagerBuilder.h"
 #include "llvm/Transforms/Utils/Cloning.h"
 
-#include <iostream>
 #include <random>
-#include <set>
-#include <vector>
 
 using namespace llvm;
 
@@ -24,7 +21,7 @@ struct BongusFlowPass : public FunctionPass {
   std::mt19937 rng;
   SmallVector<unsigned int, 13> integerOp;
   SmallVector<unsigned int, 5> floatOp;
-  std::vector<AllocaInst *> allocaInsts;
+  SmallVector<AllocaInst *, 0> allocaInsts;
   BongusFlowPass() : FunctionPass(ID), rng(std::random_device{}()) {
     integerOp = {Instruction::Add,  Instruction::Sub,  Instruction::Mul,
                  Instruction::UDiv, Instruction::SDiv, Instruction::URem,
