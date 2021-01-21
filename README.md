@@ -2,7 +2,11 @@
 
 Using LLVM Pass to obfuscate programs.
 
-Write up (in Chinese): <https://zhuanlan.zhihu.com/p/104735336>
+Write up (in Chinese):
+
+- [使用 LLVM Pass 实现字符串加密](https://zhuanlan.zhihu.com/p/104735336)
+- [重写 OLLVM 之虚假控制流](https://www.anquanke.com/post/id/212768)
+- [重写 OLLVM 之控制流平坦化](https://zhuanlan.zhihu.com/p/345843635)
 
 ## Features
 
