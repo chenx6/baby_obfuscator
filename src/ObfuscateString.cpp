@@ -108,13 +108,15 @@ struct ObfuscatePass : public ModulePass {
     // Insert decrypt function above Inst with IRBuilder.
     IRBuilder<> builder(Inst);
     Type *Int8PtrTy = builder.getInt8PtrTy();
+    Type *Int64Ty = builder.getInt64Ty();
     // Create decrypt function in GlobalValue / Get decrypt function.
-    SmallVector<Type *, 1> FuncArgs = {Int8PtrTy};
+    SmallVector<Type *, 1> FuncArgs = {Int8PtrTy, Int64Ty};
     FunctionType *FuncType = FunctionType::get(Int8PtrTy, FuncArgs, false);
     FunctionCallee DecryptFunc = M.getOrInsertFunction("__decrypt", FuncType);
     FunctionCallee EncryptFunc = M.getOrInsertFunction("__encrypt", FuncType);
+    ConstantInt *StringLength = builder.getInt64(Origin.length() - 1);
     // Create call instrucions.
-    SmallVector<Value *, 1> CallArgs = {Usr};
+    SmallVector<Value *, 2> CallArgs = {Usr, StringLength};
     CallInst *DecryptInst =
         builder.CreateCall(FuncType, DecryptFunc.getCallee(), CallArgs);
     CallInst *EncryptInst =

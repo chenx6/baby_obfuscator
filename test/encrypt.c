@@ -1,17 +1,17 @@
-#include <stdio.h>
+#include <stdint.h>
 
-char *__decrypt(char *encStr) {
+char *__decrypt(char *encStr, uint64_t length) {
   char *curr = encStr;
-  while (*curr) {
+  for (uint16_t i = 0; i < length; i++) {
     *curr ^= 42;
     curr++;
   }
   return encStr;
 }
 
-char *__encrypt(char *originStr) {
+char *__encrypt(char *originStr, uint64_t length) {
   char *curr = originStr;
-  while (*curr) {
+  for (uint16_t i = 0; i < length; i++) {
     *curr ^= 42;
     curr++;
   }
