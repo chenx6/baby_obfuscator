@@ -3,6 +3,7 @@
 #include "llvm/IR/InstrTypes.h"
 #include "llvm/IR/Instruction.h"
 #include "llvm/Pass.h"
+#include "llvm/Support/CommandLine.h"
 
 #include <random>
 
